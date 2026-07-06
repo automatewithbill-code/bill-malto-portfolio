@@ -25,7 +25,7 @@
     }
   }
   function scrollToTarget(target, offset) {
-    if (lenis) lenis.scrollTo(target, { offset: offset || 0, duration: 1.4 });
+    if (lenis) { lenis.start(); lenis.scrollTo(target, { offset: offset || 0, duration: 1.4 }); }
     else {
       var el = typeof target === "string" ? document.querySelector(target) : target;
       if (typeof target === "number") window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
@@ -109,6 +109,31 @@
   window.addEventListener("scroll", onScrollNav, { passive: true });
   onScrollNav();
 
+  /* ---------- Mobile menu ---------- */
+  var burger = document.getElementById("navBurger");
+  var mmenu = document.getElementById("mmenu");
+  if (burger && mmenu) {
+    var closeMenu = function () {
+      if (mmenu.hidden) return;
+      mmenu.hidden = true;
+      burger.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("modal-open");
+      if (lenis) lenis.start();
+    };
+    burger.addEventListener("click", function () {
+      if (mmenu.hidden) {
+        mmenu.hidden = false;
+        burger.classList.add("is-open");
+        burger.setAttribute("aria-expanded", "true");
+        document.body.classList.add("modal-open");
+        if (lenis) lenis.stop();
+      } else { closeMenu(); }
+    });
+    mmenu.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+  }
+
   /* ---------- Hero name: split into animatable letters ---------- */
   var heroLines = document.querySelectorAll(".hero__line");
   var allChars = [];
@@ -128,6 +153,8 @@
     var v = document.getElementById(id);
     if (!v) return null;
     if (!url) { v.remove(); return null; }
+    /* data-saver: on small screens don't pre-download full clips */
+    if (mq("(max-width: 767px)").matches && v.getAttribute("preload") === "auto") v.preload = "metadata";
     v.src = url;
     v.addEventListener("loadeddata", function () {
       v.classList.add("is-ready");
