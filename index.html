@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bill Malto — AI Automation Specialist</title>
+<meta name="description" content="I build AI automation systems that save time, reduce manual work, and help businesses scale. n8n · Make.com · Zapier · GoHighLevel.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305080a'/%3E%3Ctext x='30' y='43' font-family='Arial Black,Arial,sans-serif' font-size='26' font-weight='900' text-anchor='middle' fill='%2338e0a4'%3EBM%3C/text%3E%3Ccircle cx='52' cy='14' r='5' fill='%2310b981'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css?v=6">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="preloader" id="preloader" aria-hidden="true"><span class="preloader__node"></span></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#hero" data-nav>BM<span class="nav__logo-dot"></span></a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#services" data-nav>Services</a>
+    <a href="#projects" data-nav>Projects</a>
+    <a href="#work" data-nav>Work</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+  <a class="btn btn--ghost nav__cta" href="#" data-book>Book a Free Call</a>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO — scroll-scrubbed 360° orbit ============ -->
+<section class="hero" id="hero">
+  <div class="hero__pin">
+    <div class="hero__media">
+      <video id="heroVideo" class="hero__video" muted playsinline preload="auto" referrerpolicy="no-referrer"></video>
+      <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__fallback" aria-hidden="true"></div>
+      <div class="hero__vignette" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero__content">
+      <p class="eyebrow hero__eyebrow"><span class="node-dot"></span>AI Automation Specialist</p>
+      <h1 class="hero__name" id="heroName" aria-label="Bill Malto">
+        <span class="hero__line" data-word="BILL"></span>
+        <span class="hero__line hero__line--accent" data-word="MALTO"></span>
+      </h1>
+      <p class="hero__sub">I build AI automation systems that save time, reduce manual work, and help businesses scale.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--solid" href="#" data-book>Book a Free Call</a>
+        <a class="btn btn--ghost" href="#projects" data-nav>View My Automation Projects</a>
+      </div>
+    </div>
+
+    <div class="hero__scrollcue" aria-hidden="true">
+      <span class="hero__scrollcue-label">Scroll to orbit</span>
+      <span class="hero__scrollcue-track"><span class="hero__scrollcue-thumb"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats" id="stats" aria-label="Results at a glance">
+  <div class="stats__grid" id="statsGrid"><!-- populated from config --></div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span><img src="assets/logos/n8n.png" alt="">n8n</span><i></i><span><img src="assets/logos/make.png" alt="">Make.com</span><i></i><span><img src="assets/logos/zapier.png" alt="">Zapier</span><i></i><span><img src="assets/logos/gohighlevel.png" alt="">GoHighLevel</span><i></i><span><img src="assets/logos/claude.png" alt="">AI Agents</span><i></i><span>APIs</span><i></i><span>CRM Automation</span><i></i><span>Workflow Design</span><i></i>
+    <span><img src="assets/logos/n8n.png" alt="">n8n</span><i></i><span><img src="assets/logos/make.png" alt="">Make.com</span><i></i><span><img src="assets/logos/zapier.png" alt="">Zapier</span><i></i><span><img src="assets/logos/gohighlevel.png" alt="">GoHighLevel</span><i></i><span><img src="assets/logos/claude.png" alt="">AI Agents</span><i></i><span>APIs</span><i></i><span>CRM Automation</span><i></i><span>Workflow Design</span><i></i>
+  </div>
+</div>
+
+<!-- ============ SERVICES — pinned, one at a time ============ -->
+<section class="services" id="services">
+  <div class="services__pin">
+    <header class="section-head">
+      <p class="eyebrow"><span class="node-dot"></span>Services</p>
+      <h2 class="section-title">Systems that run<br>your busywork.</h2>
+    </header>
+
+    <div class="services__stage">
+      <div class="services__rail" aria-hidden="true">
+        <button class="services__railbtn is-active" data-service-btn="0">n8n</button>
+        <button class="services__railbtn" data-service-btn="1">Make.com</button>
+        <button class="services__railbtn" data-service-btn="2">Zapier</button>
+        <button class="services__railbtn" data-service-btn="3">GoHighLevel</button>
+      </div>
+
+      <div class="services__cards">
+
+        <article class="service is-active" data-service="0">
+          <div class="service__visual" aria-hidden="true">
+            <img class="service__img" src="assets/services/n8n.png" alt="" loading="lazy">
+            <span class="service__badge">n8n · Workflow Automation</span>
+          </div>
+          <div class="service__body">
+            <p class="service__index"><img class="service__logo" src="assets/logos/n8n.png" alt="" loading="lazy">n8n Automation</p>
+            <h3 class="service__title">Custom n8n workflows that connect your tools, automate repetitive work, and create reliable AI-powered business processes.</h3>
+            <ul class="service__benefits">
+              <li>Connect apps and APIs</li>
+              <li>Automate repetitive tasks</li>
+              <li>Build AI agents and custom workflows</li>
+              <li>Reduce manual operations</li>
+              <li>Create scalable systems</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service" data-service="1">
+          <div class="service__visual" aria-hidden="true">
+            <img class="service__img" src="assets/services/make.png" alt="" loading="lazy">
+            <span class="service__badge">Make.com · Scenario Design</span>
+          </div>
+          <div class="service__body">
+            <p class="service__index"><img class="service__logo" src="assets/logos/make.png" alt="" loading="lazy">Make.com Automation</p>
+            <h3 class="service__title">Flexible Make.com automations that connect your business tools, move data automatically, and simplify daily operations.</h3>
+            <ul class="service__benefits">
+              <li>Automate data entry</li>
+              <li>Connect multiple platforms</li>
+              <li>Trigger workflows from forms, emails, CRM updates, and payments</li>
+              <li>Improve team productivity</li>
+              <li>Reduce errors and delays</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service" data-service="2">
+          <div class="service__visual" aria-hidden="true">
+            <img class="service__img" src="assets/services/zapier.png" alt="" loading="lazy">
+            <span class="service__badge">Zapier · App Integrations</span>
+          </div>
+          <div class="service__body">
+            <p class="service__index"><img class="service__logo" src="assets/logos/zapier.png" alt="" loading="lazy">Zapier Automation</p>
+            <h3 class="service__title">Zapier automations that streamline lead management, notifications, marketing tasks, and everyday business operations.</h3>
+            <ul class="service__benefits">
+              <li>Automate lead capture</li>
+              <li>Send instant team notifications</li>
+              <li>Sync customer data</li>
+              <li>Connect common business tools</li>
+              <li>Save time on repetitive workflows</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service" data-service="3">
+          <div class="service__visual" aria-hidden="true">
+            <img class="service__img" src="assets/services/ghl.png" alt="" loading="lazy">
+            <span class="service__badge">GoHighLevel · CRM Pipelines</span>
+          </div>
+          <div class="service__body">
+            <p class="service__index"><img class="service__logo" src="assets/logos/gohighlevel.png" alt="" loading="lazy">GoHighLevel Automation</p>
+            <h3 class="service__title">GoHighLevel CRM and automation systems that help businesses capture leads, follow up faster, manage pipelines, and convert more customers.</h3>
+            <ul class="service__benefits">
+              <li>Automated lead follow-up</li>
+              <li>CRM pipeline setup</li>
+              <li>Appointment booking workflows</li>
+              <li>Email and SMS automation</li>
+              <li>Sales and marketing automation</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="projects" id="projects">
+  <div class="projects__pin">
+    <header class="section-head">
+      <p class="eyebrow"><span class="node-dot"></span>Featured Projects</p>
+      <h2 class="section-title">Built to run<br>without you.</h2>
+      <p class="section-note" id="projectsNote">Sample projects with placeholder details — real case studies coming in. Samples are illustrations, not client claims.</p>
+      <div class="pfilter" id="projectsFilter" aria-label="Browse projects by platform"></div>
+    </header>
+    <div class="projects__stage" id="projectsGrid"><!-- populated from config --></div>
+  </div>
+</section>
+
+<!-- ============ THREE PILLARS — pinned over Clip 2 ============ -->
+<section class="pillars" id="pillars">
+  <div class="pillars__pin">
+    <div class="pillars__media" aria-hidden="true">
+      <video id="builderVideo" class="bg-video" muted playsinline preload="metadata" loop referrerpolicy="no-referrer"></video>
+      <div class="bg-fallback bg-fallback--builder"></div>
+      <div class="bg-shade"></div>
+    </div>
+    <div class="pillars__content">
+      <p class="eyebrow eyebrow--light"><span class="node-dot"></span>How I work</p>
+      <div class="pillars__list">
+        <article class="pillar" data-pillar="0">
+          <h3 class="pillar__word">AUTOMATE</h3>
+          <p class="pillar__desc">I build systems that remove repetitive manual tasks and save businesses time.</p>
+        </article>
+        <article class="pillar" data-pillar="1">
+          <h3 class="pillar__word">INTEGRATE</h3>
+          <p class="pillar__desc">I connect tools, CRMs, forms, spreadsheets, AI models, and business platforms into one smooth workflow.</p>
+        </article>
+        <article class="pillar" data-pillar="2">
+          <h3 class="pillar__word">SCALE</h3>
+          <p class="pillar__desc">I create reliable automation systems that help teams handle more leads, customers, and operations without adding unnecessary manual work.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK — over Clip 3 ============ -->
+<section class="work" id="work">
+  <div class="work__media" aria-hidden="true">
+    <video id="expertVideo" class="bg-video" muted playsinline preload="metadata" loop referrerpolicy="no-referrer"></video>
+    <div class="bg-fallback bg-fallback--expert"></div>
+    <div class="bg-shade bg-shade--soft"></div>
+  </div>
+  <header class="section-head section-head--onmedia">
+    <p class="eyebrow eyebrow--light"><span class="node-dot"></span>Work</p>
+    <h2 class="section-title">What I build.</h2>
+  </header>
+  <div class="work__grid">
+    <a class="workcard reveal" href="#projects" data-nav>
+      <span class="tag" data-plat="n8n">n8n</span>
+      <h3>n8n Automation Systems</h3>
+      <p>Reliable AI-powered workflows that run your operations end to end.</p>
+      <span class="workcard__arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="workcard reveal" href="#projects" data-nav>
+      <span class="tag" data-plat="Make.com">Make.com</span>
+      <h3>Make.com Business Workflows</h3>
+      <p>Visual scenarios that move data between every tool you use.</p>
+      <span class="workcard__arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="workcard reveal" href="#projects" data-nav>
+      <span class="tag" data-plat="Zapier">Zapier</span>
+      <h3>Zapier Integrations</h3>
+      <p>Fast, dependable connections for the apps your team lives in.</p>
+      <span class="workcard__arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="workcard reveal" href="#projects" data-nav>
+      <span class="tag" data-plat="GoHighLevel">GoHighLevel</span>
+      <h3>GoHighLevel CRM Automation</h3>
+      <p>Pipelines, booking, and follow-up that convert more leads.</p>
+      <span class="workcard__arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ MARQUEE 2 ============ -->
+<div class="marquee marquee--reverse" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Workflow Design</span><i></i><span>CRM Automation</span><i></i><span>APIs</span><i></i><span><img src="assets/logos/claude.png" alt="">AI Agents</span><i></i><span><img src="assets/logos/gohighlevel.png" alt="">GoHighLevel</span><i></i><span><img src="assets/logos/zapier.png" alt="">Zapier</span><i></i><span><img src="assets/logos/make.png" alt="">Make.com</span><i></i><span><img src="assets/logos/n8n.png" alt="">n8n</span><i></i>
+    <span>Workflow Design</span><i></i><span>CRM Automation</span><i></i><span>APIs</span><i></i><span><img src="assets/logos/claude.png" alt="">AI Agents</span><i></i><span><img src="assets/logos/gohighlevel.png" alt="">GoHighLevel</span><i></i><span><img src="assets/logos/zapier.png" alt="">Zapier</span><i></i><span><img src="assets/logos/make.png" alt="">Make.com</span><i></i><span><img src="assets/logos/n8n.png" alt="">n8n</span><i></i>
+  </div>
+</div>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section class="certs" id="certifications">
+  <div class="certs__pin">
+    <header class="section-head">
+      <p class="eyebrow"><span class="node-dot"></span>Certifications</p>
+      <h2 class="section-title">Trained.<br>Certified. Current.</h2>
+      <p class="section-note" id="certsNote"></p>
+    </header>
+    <div class="certs__viewport">
+      <div class="certs__track" id="certsGrid"><!-- populated from config --></div>
+    </div>
+    <div class="certs__meta" aria-hidden="true">
+      <div class="certs__progress"><span class="certs__bar" id="certsBar"></span></div>
+      <span class="certs__count" id="certsCount"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATE LIGHTBOX ============ -->
+<div class="certbox" id="certbox" hidden>
+  <div class="certbox__overlay" data-close-cert></div>
+  <figure class="certbox__figure" role="dialog" aria-modal="true" aria-label="Certificate">
+    <button class="certbox__close" type="button" data-close-cert aria-label="Close certificate">×</button>
+    <img class="certbox__img" id="certboxImg" alt="">
+    <figcaption class="certbox__caption" id="certboxCaption"></figcaption>
+  </figure>
+</div>
+
+<!-- ============ BOOKING MODAL — Calendly embed ============ -->
+<div class="bookbox" id="bookbox" hidden>
+  <div class="bookbox__overlay" data-close-book></div>
+  <div class="bookbox__dialog" role="dialog" aria-modal="true" aria-label="Book a free call">
+    <button class="bookbox__close" type="button" data-close-book aria-label="Close booking">×</button>
+    <header class="bookbox__head">
+      <p class="eyebrow"><span class="node-dot"></span>Book a Free Call</p>
+      <p class="bookbox__sub">Pick a time that works for you — 30 minutes, no obligation.</p>
+    </header>
+    <div class="bookbox__frame">
+      <div class="bookbox__loading" id="bookboxLoading" aria-hidden="true"><span class="preloader__node"></span></div>
+      <iframe id="bookboxFrame" title="Schedule a free automation call" loading="lazy" allow="fullscreen"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FINALE — over Clip 4 ============ -->
+<section class="finale" id="contact">
+  <div class="finale__media" aria-hidden="true">
+    <video id="closerVideo" class="bg-video" muted playsinline preload="metadata" loop referrerpolicy="no-referrer"></video>
+    <div class="bg-fallback bg-fallback--closer"></div>
+    <div class="bg-shade"></div>
+  </div>
+  <div class="finale__content">
+    <h2 class="finale__title"><span>Ready to automate</span><span class="finale__accent">your business?</span></h2>
+    <p class="finale__sub">Let's build smarter workflows that save time, reduce manual work, and help your business grow.</p>
+    <div class="finale__ctas">
+      <a class="btn btn--solid btn--lg" href="#" data-book>Book a Free Automation Call</a>
+      <button class="btn btn--ghost btn--lg" type="button" data-open-chat>Send Me a Message</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__top">
+    <a class="footer__logo" href="#hero" data-nav>BILL MALTO</a>
+    <nav class="footer__cols" aria-label="Footer">
+      <div>
+        <p class="footer__head">Site</p>
+        <a href="#projects" data-nav>Projects</a>
+        <a href="#services" data-nav>Services</a>
+        <a href="#contact" data-nav>Contact</a>
+      </div>
+      <div>
+        <p class="footer__head">Elsewhere</p>
+        <a href="#" data-ext="linkedinUrl" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" data-ext="youtubeUrl" target="_blank" rel="noopener">YouTube</a>
+        <a href="#" data-ext="githubUrl" target="_blank" rel="noopener" hidden>GitHub</a>
+        <a href="#" data-ext="twitterUrl" target="_blank" rel="noopener" hidden>X / Twitter</a>
+        <a href="#" data-email>Email</a>
+      </div>
+    </nav>
+  </div>
+  <p class="footer__legal">© <span id="year"></span> Bill Malto · AI Automation Specialist</p>
+</footer>
+
+<!-- ============ PROJECT VIEWER ============ -->
+<div class="pmodal" id="pmodal" hidden>
+  <div class="pmodal__overlay" data-close-modal></div>
+  <div class="pmodal__dialog" role="dialog" aria-modal="true" aria-labelledby="pmodalTitle">
+    <button class="pmodal__close" type="button" data-close-modal aria-label="Close project">×</button>
+    <div class="pmodal__media">
+      <img class="pmodal__img" id="pmodalImg" alt="" hidden>
+      <div class="pmodal__placeholder" id="pmodalPlaceholder" aria-hidden="true"><span id="pmodalGlyph"></span><small>Screenshots coming soon</small></div>
+      <div class="pmodal__thumbs" id="pmodalThumbs"></div>
+    </div>
+    <div class="pmodal__body">
+      <span class="tag" id="pmodalTag"></span>
+      <h3 class="pmodal__title" id="pmodalTitle"></h3>
+      <p class="pmodal__summary" id="pmodalSummary"></p>
+      <div class="pmodal__meta">
+        <div><h4>What it does</h4><p id="pmodalWhat"></p></div>
+        <div><h4>Tools used</h4><p id="pmodalTools"></p></div>
+        <div><h4>Business impact</h4><p id="pmodalImpact"></p></div>
+      </div>
+      <a class="btn btn--solid" href="#" data-book>Book a Free Call</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CHAT WIDGET ============ -->
+<div class="chat" id="chat">
+  <button class="chat__toggle" id="chatToggle" type="button" aria-expanded="false" aria-controls="chatPanel">
+    <span class="chat__toggle-icon" aria-hidden="true"></span>
+    <span class="chat__toggle-label">Chat with Bill</span>
+  </button>
+
+  <section class="chat__panel" id="chatPanel" aria-label="Chat with Bill" hidden>
+    <header class="chat__head">
+      <span class="chat__status"></span>
+      <div><strong>Chat with Bill</strong><small>Usually replies within a day</small></div>
+      <button class="chat__close" type="button" aria-label="Close chat">×</button>
+    </header>
+
+    <div class="chat__log" id="chatLog" aria-live="polite">
+      <div class="chat__msg chat__msg--bot">Need help automating your business?</div>
+    </div>
+
+    <div class="chat__quick" id="chatQuick">
+      <button type="button" data-q="automate">What can you automate?</button>
+      <button type="button" data-q="projects">Show me your projects</button>
+      <button type="button" data-q="tools">What tools do you use?</button>
+      <button type="button" data-q="book">Book a free call</button>
+    </div>
+
+    <div class="chat__form" id="chatForm">
+      <label class="sr-only" for="chatInput">Your message</label>
+      <textarea id="chatInput" rows="2" placeholder="Type a message…"></textarea>
+      <button class="btn btn--solid chat__send" id="chatSend" type="button">Send</button>
+      <p class="chat__hint">AI assistant — answers can be imperfect. For anything important, book a call or email Bill.</p>
+    </div>
+  </section>
+</div>
+
+<script src="js/vendor/lenis.min.js"></script>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/secrets.js" onerror="this.remove()"></script>
+<script src="js/config.js?v=6"></script>
+<script src="js/main.js?v=6"></script>
+</body>
+</html>
