@@ -798,24 +798,6 @@
     requestAnimationFrame(tickField);
   })();
 
-  /* --- theme toggle: lifted reading surface (persisted) --- */
-  var themeBtn = document.getElementById("themeToggle");
-  if (themeBtn) {
-    var savedTheme = null;
-    try { savedTheme = localStorage.getItem("bm-theme"); } catch (e) {}
-    if (savedTheme === "lift") {
-      document.documentElement.setAttribute("data-theme", "lift");
-      themeBtn.setAttribute("aria-pressed", "true");
-    }
-    themeBtn.addEventListener("click", function () {
-      var on = document.documentElement.getAttribute("data-theme") === "lift";
-      if (on) document.documentElement.removeAttribute("data-theme");
-      else document.documentElement.setAttribute("data-theme", "lift");
-      themeBtn.setAttribute("aria-pressed", String(!on));
-      try { localStorage.setItem("bm-theme", on ? "" : "lift"); } catch (e) {}
-    });
-  }
-
   /* ============================================================
      CHAT WIDGET — "Chat with Bill"
      ============================================================ */
