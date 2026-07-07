@@ -669,6 +669,154 @@
   if (statsSection) statsIO.observe(statsSection);
 
   /* ============================================================
+     CINEMATIC DEPTH PASS — proof band, parallax, tilt,
+     hero node-field, theme toggle, scroll progress
+     ============================================================ */
+
+  /* --- proof band: certification chips under the stats --- */
+  var proofWrap = document.getElementById("statsProof");
+  if (proofWrap && (CFG.certifications || []).length) {
+    var proofLabel = document.createElement("span");
+    proofLabel.className = "stats__proof-label";
+    proofLabel.textContent = "Certified";
+    proofWrap.appendChild(proofLabel);
+    CFG.certifications.forEach(function (ct) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = ct.title
+        .replace(/^AI Automation with /, "")
+        .replace(/^No Code Automation with /, "")
+        .replace(/ Web Page Building & Maintenance$/, "");
+      b.addEventListener("click", function () { scrollToTarget("#certifications", -10); });
+      proofWrap.appendChild(b);
+    });
+  }
+
+  /* --- scroll progress bar --- */
+  var sbarFill = document.getElementById("scrollbarFill");
+  if (sbarFill) {
+    var sbarUpd = function () {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      sbarFill.style.transform = "scaleX(" + (max > 0 ? (window.scrollY / max).toFixed(4) : 0) + ")";
+    };
+    window.addEventListener("scroll", sbarUpd, { passive: true });
+    window.addEventListener("resize", sbarUpd);
+    sbarUpd();
+  }
+
+  /* --- depth parallax: background media drifts slower than content --- */
+  if (hasGSAP && !reduceMotion) {
+    [[".work", ".work__media"], [".finale", ".finale__media"]].forEach(function (pair) {
+      var sec = document.querySelector(pair[0]);
+      var med = document.querySelector(pair[1]);
+      if (!sec || !med) return;
+      gsap.fromTo(med, { yPercent: -6 }, {
+        yPercent: 6,
+        ease: "none",
+        scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: true }
+      });
+    });
+  }
+
+  /* --- cursor perspective tilt (desktop, fine pointer only) --- */
+  if (desktop && !reduceMotion && mq("(pointer: fine)").matches) {
+    document.querySelectorAll(".project__media,.service__visual").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty("--ty", (px * 6).toFixed(2) + "deg");
+        el.style.setProperty("--tx", (-py * 5).toFixed(2) + "deg");
+      });
+      el.addEventListener("pointerleave", function () {
+        el.style.setProperty("--tx", "0deg");
+        el.style.setProperty("--ty", "0deg");
+      });
+    });
+  }
+
+  /* --- hero node-field: drifting automation nodes over the orbit clip --- */
+  (function heroField() {
+    var canvas = document.getElementById("heroCanvas");
+    if (!canvas) return;
+    if (reduceMotion || !desktop) { canvas.remove(); return; }
+    var ctx = canvas.getContext("2d");
+    if (!ctx) { canvas.remove(); return; }
+    var DPR = Math.min(1.5, window.devicePixelRatio || 1);
+    var W = 0, H = 0;
+    function sizeField() {
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      canvas.width = Math.max(1, W * DPR); canvas.height = Math.max(1, H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    sizeField();
+    window.addEventListener("resize", sizeField);
+    var N = 42, nodes = [];
+    for (var i = 0; i < N; i++) {
+      nodes.push({ x: Math.random(), y: Math.random(), vx: (Math.random() - 0.5) * 0.0007, vy: (Math.random() - 0.5) * 0.0007 });
+    }
+    var fieldVisible = true;
+    new IntersectionObserver(function (en) { fieldVisible = en[0].isIntersecting; }, { threshold: 0 }).observe(canvas);
+    var lastT = 0;
+    function tickField(t) {
+      requestAnimationFrame(tickField);
+      if (!fieldVisible || t - lastT < 33) return; /* ~30fps cap */
+      lastT = t;
+      ctx.clearRect(0, 0, W, H);
+      var i, j, a, b2;
+      for (i = 0; i < N; i++) {
+        a = nodes[i];
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < 0 || a.x > 1) a.vx *= -1;
+        if (a.y < 0 || a.y > 1) a.vy *= -1;
+      }
+      ctx.lineWidth = 1;
+      for (i = 0; i < N; i++) {
+        a = nodes[i];
+        for (j = i + 1; j < N; j++) {
+          b2 = nodes[j];
+          var dx = (a.x - b2.x) * (W / H), dy = a.y - b2.y;
+          var d2 = dx * dx + dy * dy;
+          if (d2 < 0.02) {
+            ctx.strokeStyle = "rgba(56,224,164," + (0.11 * (1 - d2 / 0.02)).toFixed(3) + ")";
+            ctx.beginPath();
+            ctx.moveTo(a.x * W, a.y * H);
+            ctx.lineTo(b2.x * W, b2.y * H);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.fillStyle = "rgba(56,224,164,.55)";
+      for (i = 0; i < N; i++) {
+        a = nodes[i];
+        ctx.beginPath();
+        ctx.arc(a.x * W, a.y * H, 1.6, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(tickField);
+  })();
+
+  /* --- theme toggle: lifted reading surface (persisted) --- */
+  var themeBtn = document.getElementById("themeToggle");
+  if (themeBtn) {
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem("bm-theme"); } catch (e) {}
+    if (savedTheme === "lift") {
+      document.documentElement.setAttribute("data-theme", "lift");
+      themeBtn.setAttribute("aria-pressed", "true");
+    }
+    themeBtn.addEventListener("click", function () {
+      var on = document.documentElement.getAttribute("data-theme") === "lift";
+      if (on) document.documentElement.removeAttribute("data-theme");
+      else document.documentElement.setAttribute("data-theme", "lift");
+      themeBtn.setAttribute("aria-pressed", String(!on));
+      try { localStorage.setItem("bm-theme", on ? "" : "lift"); } catch (e) {}
+    });
+  }
+
+  /* ============================================================
      CHAT WIDGET — "Chat with Bill"
      ============================================================ */
   var chatToggle = document.getElementById("chatToggle");
