@@ -26,7 +26,7 @@ window.SITE_CONFIG = {
   },
 
   /* ---- CONTACT ---- */
-  email:       "hello@billmalto.com",                          // replace with your real email
+  email:       "maltoyeet@gmail.com",                          // from CV ✓
   bookingUrl:  "https://calendly.com/automatewithbill/30min",  // your Calendly link ✓
   linkedinUrl: "https://www.linkedin.com/in/your-handle",
   youtubeUrl:  "https://www.youtube.com/@your-handle",
