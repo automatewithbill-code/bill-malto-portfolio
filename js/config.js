@@ -22,6 +22,7 @@ window.SITE_CONFIG = {
      instead of shipping any key to the browser.                  */
   aiChat: {
     endpoint: "https://api.openai.com/v1/chat/completions",
+    proxy:    "https://bill-malto-portfolio.vercel.app/api/chat",  // key lives server-side
     model:    "gpt-4o-mini",
     apiKey:   (typeof window !== "undefined" && (window.OPENAI_API_KEY || window.GROQ_API_KEY)) || "",
   },

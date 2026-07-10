@@ -909,32 +909,32 @@
     say(text, "user");
     chatInput.value = "";
 
-    if (!AICHAT.apiKey) { emailFallback(text); return; }
+    if (!AICHAT.apiKey && !AICHAT.proxy) { emailFallback(text); return; }
 
     chatHistory.push({ role: "user", content: text });
     if (chatHistory.length > 12) chatHistory = chatHistory.slice(-12);
     chatBusy = true;
     var typing = showTyping();
 
-    fetch(AICHAT.endpoint || "https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + AICHAT.apiKey
-      },
-      body: JSON.stringify({
-        model: AICHAT.model || "gpt-4o-mini",
-        messages: [{ role: "system", content: chatSystemPrompt() }].concat(chatHistory),
-        max_tokens: 260,
-        temperature: 0.6
-      })
-    })
+    var useProxy = !AICHAT.apiKey;
+    var url = useProxy ? AICHAT.proxy : (AICHAT.endpoint || "https://api.openai.com/v1/chat/completions");
+    var headers = { "Content-Type": "application/json" };
+    if (!useProxy) headers["Authorization"] = "Bearer " + AICHAT.apiKey;
+    var payload = { messages: [{ role: "system", content: chatSystemPrompt() }].concat(chatHistory) };
+    if (!useProxy) {
+      payload.model = AICHAT.model || "gpt-4o-mini";
+      payload.max_tokens = 260;
+      payload.temperature = 0.6;
+    }
+
+    fetch(url, { method: "POST", headers: headers, body: JSON.stringify(payload) })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
       })
       .then(function (data) {
-        var reply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+        var reply = data.reply ||
+          (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content);
         if (!reply) throw new Error("empty reply");
         reply = reply.trim();
         chatHistory.push({ role: "assistant", content: reply });
