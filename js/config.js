@@ -14,15 +14,16 @@ window.SITE_CONFIG = {
   },
   videoDuration: 8,   // seconds per clip
 
-  /* ---- AI CHAT (Groq) ----
+  /* ---- AI CHAT (OpenAI-compatible endpoint) ----
      The API key lives in js/secrets.js (gitignored) so it never
      reaches the public repo. Without it, the chat widget falls
      back to opening the visitor's email app. For a live site,
-     route the call through a small proxy (e.g. Cloudflare Worker)
+     route the call through a small proxy (e.g. Vercel function)
      instead of shipping any key to the browser.                  */
-  groq: {
-    apiKey: (typeof window !== "undefined" && window.GROQ_API_KEY) || "",
-    model:  "llama-3.3-70b-versatile",
+  aiChat: {
+    endpoint: "https://api.openai.com/v1/chat/completions",
+    model:    "gpt-4o-mini",
+    apiKey:   (typeof window !== "undefined" && (window.OPENAI_API_KEY || window.GROQ_API_KEY)) || "",
   },
 
   /* ---- CONTACT ---- */

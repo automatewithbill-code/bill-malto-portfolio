@@ -860,8 +860,8 @@
     }
   });
 
-  /* ---- AI chat via Groq (email fallback if unavailable) ---- */
-  var GROQ = CFG.groq || {};
+  /* ---- AI chat (OpenAI-compatible API; email fallback if unavailable) ---- */
+  var AICHAT = CFG.aiChat || CFG.groq || {};
   var chatHistory = [];
   var chatBusy = false;
 
@@ -909,21 +909,21 @@
     say(text, "user");
     chatInput.value = "";
 
-    if (!GROQ.apiKey) { emailFallback(text); return; }
+    if (!AICHAT.apiKey) { emailFallback(text); return; }
 
     chatHistory.push({ role: "user", content: text });
     if (chatHistory.length > 12) chatHistory = chatHistory.slice(-12);
     chatBusy = true;
     var typing = showTyping();
 
-    fetch("https://api.groq.com/openai/v1/chat/completions", {
+    fetch(AICHAT.endpoint || "https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + GROQ.apiKey
+        "Authorization": "Bearer " + AICHAT.apiKey
       },
       body: JSON.stringify({
-        model: GROQ.model || "llama-3.3-70b-versatile",
+        model: AICHAT.model || "gpt-4o-mini",
         messages: [{ role: "system", content: chatSystemPrompt() }].concat(chatHistory),
         max_tokens: 260,
         temperature: 0.6
