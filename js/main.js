@@ -918,7 +918,14 @@
     var typing = showTyping();
 
     var useProxy = !AICHAT.apiKey;
-    var url = useProxy ? AICHAT.proxy : (AICHAT.endpoint || "https://api.openai.com/v1/chat/completions");
+    /* Same-origin /api/chat exists on every Vercel-served domain (default
+       *.vercel.app AND any custom domain like automatewithbill.dev), which
+       avoids CORS. GitHub Pages has no serverless function, so it calls the
+       absolute Vercel proxy cross-origin (that origin is CORS-allowlisted). */
+    var proxyUrl = /\.github\.io$/.test(location.hostname)
+      ? AICHAT.proxy
+      : "/api/chat";
+    var url = useProxy ? proxyUrl : (AICHAT.endpoint || "https://api.openai.com/v1/chat/completions");
     var headers = { "Content-Type": "application/json" };
     if (!useProxy) headers["Authorization"] = "Bearer " + AICHAT.apiKey;
     var payload = { messages: [{ role: "system", content: chatSystemPrompt() }].concat(chatHistory) };

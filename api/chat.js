@@ -6,6 +6,8 @@
 
 const ALLOWED_ORIGINS = [
   "https://bill-malto-portfolio.vercel.app",
+  "https://www.automatewithbill.dev",
+  "https://automatewithbill.dev",
   "https://automatewithbill-code.github.io",
   "http://localhost:8000",
 ];
